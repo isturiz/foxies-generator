@@ -14,15 +14,21 @@ const createImageNode = () => {
   img.width = '320'
   img.dataset.src = `https://randomfox.ca/images/${random()}.jpg`
 
-  container.appendChild(img)
+  const imgWrapper = document.createElement("div");
+  imgWrapper.className = "bg-gray-300";
+  imgWrapper.style.minHeight = "100px";
+  imgWrapper.style.display = "inline-block";
 
-  console.log(container);
-  
+  imgWrapper.appendChild(img)
+  // container.appendChild(imgWrapper);
+  container.appendChild(imgWrapper);
+
   return container
 };
 
 const mountNode = document.getElementById("images")
-const addButton = document.querySelector('button')
+const addButton = document.getElementById('addImg')
+const deleteButton = document.getElementById('deleteImg')
 
 const addImg = () => {
   const newImg = createImageNode()
@@ -30,7 +36,12 @@ const addImg = () => {
   registerImg(newImg)
 }
 
+const deleteImg = () => {
+  mountNode.innerHTML = ''
+}
+
 addButton.addEventListener('click', addImg)
+deleteButton.addEventListener('click', deleteImg)
 
 
 
